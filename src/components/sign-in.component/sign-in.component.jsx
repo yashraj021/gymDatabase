@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 
 
@@ -9,21 +9,73 @@ class SignIn extends React.Component {
     
 
         this.state = {
-            show: true
-
+            show: false,
+            email: "",
+            password: ""
         } 
     }
+    //HERE YOU CAN CONNECT YOUR BACKEND TO GET SIGN IN DATA VALE
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log(this.state)
 
+    }
+    
+    handleChange = event => {
+       
+        const { type, value } = event.target;
+        console.log(type,value)
+        this.setState({[type]: value});
+    }
 
+    onclick = () => {
+        this.setState({show: true});
+    }
     onhandle = () => {
         this.setState({show: false});
     }
     
     render() {
         return (
-               <Button variant="link" className = "LogIn" style = {{fontSize: '20px', paddingTop: '1.1px', fontWeight: "bold", marginLeft: "10px"}}>
-                   LOG IN 
-               </Button>
+            <div>
+                <Button variant="link" className = "LogIn" style = {{fontSize: '20px', paddingTop: '1.1px', fontWeight: "bold", marginLeft: "10px",textDecoration: 'none'}} onClick = {this.onclick}>
+                  {'LOG IN'}
+                </Button>
+                <div>
+                    <Modal centered show={this.state.show} onHide={this.onhandle}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Sign In</Modal.Title>
+                        </Modal.Header>                   
+                        <Modal.Body style = {{backgroundColor: "rgba(0,0,0,0)"}} >
+                        <Form onSubmit = {this.handleSubmit}>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" onChange = {this.handleChange}/>
+                                <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" placeholder="Password" onChange = {this.handleChange}/>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" label="Check me out" />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>                        
+                        </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            
+                            <Button onClick={this.onhandle}>Close</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
+           </div>
+           
         )
     }
 }

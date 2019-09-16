@@ -19,6 +19,7 @@ class SignUp extends React.Component {
     
     handleSubmit = async event => {
         event.preventDefault();
+        //ONsIGNuP IS FROM HOMEPAGE TO UPDATE THE STATE, YOU CAN EITHER JOIN YOUR BACKEND HERE(RECOMMENDED) OR AT THE HOMEPAGE FOR SIGN UP
         this.props.onSignUp(this.state);
         
         this.setState({displayName: '',
