@@ -5,6 +5,7 @@ import SignUp from '../../components/sign-up/sign-up.component';
 
 
 
+
 class HomePage extends React.Component{ 
     constructor(props) {
         super(props);
@@ -51,8 +52,7 @@ class HomePage extends React.Component{
                 <div className = "joinus">JOIN US</div>         
                 <SignUp className = "forms" onSignUp = { this.onSignUp } />
             </div>
-            </div>
-            
+            </div>            
     </div>   
 );
     }

@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    background-color: rgba(242, 242, 242, 1);
     font-family: 'Open Sans Condensed', sans-serif;
   }
 
@@ -15,12 +15,16 @@
     font-size: 20px;
     cursor: pointer;
     padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
 
     .option {
-      padding: 3px 15px 5px 15px;
+      padding: 3px 15px 5px 30px;
     }
 
     .option:hover {
       color: pink;
     }
   }
+
+ 

@@ -1,6 +1,7 @@
 import React from 'react';
 import './header.style.scss';
 import { Link } from 'react-router-dom';
+import SignIn from '../sign-in.component/sign-in.component';
 
 
 const Header = () => (
@@ -9,13 +10,15 @@ const Header = () => (
             <Link className = 'option' to = '/shop'>
                 SHOP
             </Link>
-           
             <Link className = 'option' to = '/shop'>
                 CONTACT
             </Link>
-             <Link className = 'option' to = '/signin'>
-                SIGN IN
-            </Link>
+            <div>
+                <SignIn/>
+            </div>
+            
+        
+    
         </div>
     </div>
 )
