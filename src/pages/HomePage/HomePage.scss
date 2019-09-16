@@ -1,0 +1,95 @@
+.homepage {
+    .title {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      color: white;
+      justify-content: center;
+      padding-bottom: 2vw;
+      border: 2px solid black;
+      padding-top: 40px;
+      font-size: 2vw;
+      background-color: black;
+      margin: 30px 50px 30px 50px;
+      font-family: 'Saira Stencil One', cursive;
+      letter-spacing: 3vw;
+      
+    }
+    .quote {
+      font-size: 1vw;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      letter-spacing: 1vw;
+      color: white;
+      justify-content: center;
+      font-family: 'Open Sans Condensed', sans-serif;
+      margin: 0 0 30px 0;
+      font-weight: bold;
+    }
+    
+    .Card{
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 30px;
+    
+      .Arnold {
+        display: flex;
+        flex-direction: column;
+        height: 20vw;
+        width: 40vw;
+        overflow: hidden;
+        background-size: cover;
+        margin-bottom: 40px;     
+      
+      }
+    
+      .ArnoldQuote{
+        width:40vw;
+        justify-content: center;
+        font-family: 'Sacramento', cursive;
+        font-size: 1.8vw;
+        color: white;  
+      }
+      .Author {
+        width: 40vw;
+        display: flex;
+        justify-content: flex-end;
+        color: white;
+        padding-bottom: 20px;
+        font-family: 'Open Sans Condensed', sans-serif;
+    }
+  }
+}
+
+.Main {
+  width: 100%;
+  padding: 0px 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0,0,0,0.5);
+
+  
+}
+
+.SignUp {
+  padding-top:30px;
+  width: 100%;
+  display: flex;
+  padding-left: 15vw;
+  flex-direction: column;
+  color: white;
+  
+
+  .joinus{
+    display: flex;
+    width: 100%;
+    padding-left: 2vw;
+    font-family: 'Open Sans Condensed', sans-serif;
+    letter-spacing: 2vw;
+    font-weight: bold;
+  }
+  
+}
+
+
