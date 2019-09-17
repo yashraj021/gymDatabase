@@ -27,6 +27,9 @@ class App extends React.Component {
     if (this.state.Login) {
       return <Redirect to='/home' />
     }
+    else{
+      return <Redirect to='/' />
+    }
   }
 
   
