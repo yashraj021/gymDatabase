@@ -3,7 +3,8 @@ import './user-data.style.scss'
 
 
 const UserData = () => (
-    <div className = "user-data"></div>
+    <div>
+    </div>
 );
 
 export default UserData;

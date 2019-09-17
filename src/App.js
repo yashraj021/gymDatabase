@@ -37,7 +37,7 @@ class App extends React.Component {
       
       return (
         <div>
-          <Header onLogIn = {this.onLogIn} onlogin ={this.state.LogIn} />
+          <Header onLogIn = {this.onLogIn} onlogin ={this.state.Login} />
           {this.renderRedirect()}
           <Switch>
             <Route exact path='/' component ={ HomePage }/>

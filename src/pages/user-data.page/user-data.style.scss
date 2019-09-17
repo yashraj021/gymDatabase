@@ -1,9 +1,20 @@
 .user-data{
-    
     height: 100%;
     position: absolute;
+    display: flex;
+    flex-direction: row;
     left: 0;
     width: 100%;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.150);
+
+    .navigation {
+        color: pink;
+        
+    }
+
+}
+
+.option:hover{
+    font-weight: bold;
 }
