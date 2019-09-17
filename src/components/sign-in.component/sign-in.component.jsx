@@ -19,13 +19,15 @@ class SignIn extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log(this.state)
-        this.props.onLogIn();
         this.setState({
             show: false,
             email: "",
             password:"",
             login: true
+        }, () => {
+            this.props.onLogIn(this.state.login);
         })
+        
 
     }
     
@@ -39,14 +41,17 @@ class SignIn extends React.Component {
 
     }
 
-    onclick = () => {
+    onclick = async () => {
         if(this.state.login === false){
             this.setState({show: true});
         }
         else{
-            this.setState({
+             this.setState({
                 login: false
+            },() => {
+                this.props.onLogIn(this.state.login);
             })
+            
         }
     }
         

@@ -14,6 +14,7 @@ const Header = (props) => (
                 CONTACT
             </Link>
             <SignIn onLogIn ={props.onLogIn} />
+            <Link to = '/home'></Link>
         </div>
     </div>
 )

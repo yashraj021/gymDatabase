@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const UserData = () => (
-    <div></div>
+    <div>Hello</div>
 );
 
 export default UserData;

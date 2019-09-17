@@ -1,8 +1,9 @@
 import React from 'react';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import Header from './components/header.component/header.component';
+import UserData from './pages/user-data.page/user-data.page';
 import './App.scss';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 
 
@@ -16,19 +17,28 @@ class App extends React.Component {
       }
   }
 
-  onLogIn = () => {
+  onLogIn = (state) => {
     this.setState({
-      Login: true
-    })
+      Login: state
+    }, () => console.log(this.state.Login))
   }
+
+  renderRedirect = () => {
+    if (this.state.Login) {
+      return <Redirect to='/home' />
+    }
+  }
+
   
     render() {      
       
       return (
         <div>
-          <Header onLogIn = {this.onLogIn} OnLogIn ={this.state.LogIn} />
+          <Header onLogIn = {this.onLogIn} onlogin ={this.state.LogIn} />
+          {this.renderRedirect()}
           <Switch>
             <Route exact path='/' component ={ HomePage }/>
+            <Route exact path='/home' component ={ UserData }/>
           </Switch>
         </div>
       );
