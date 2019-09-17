@@ -13,13 +13,13 @@
     display: flex;
     justify-content:flex-end;
     font-size: 20px;
-    cursor: pointer;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
 
     .option {
       padding: 3px 15px 5px 30px;
+      cursor: pointer;
     }
 
     .option:hover {

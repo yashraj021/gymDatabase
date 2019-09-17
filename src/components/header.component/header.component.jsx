@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SignIn from '../sign-in.component/sign-in.component';
 
 
-const Header = () => (
+const Header = (props) => (
     <div className = 'header'>
         <div className = 'options'>
             <Link className = 'option' to = '/shop'>
@@ -13,10 +13,7 @@ const Header = () => (
             <Link className = 'option' to = '/shop'>
                 CONTACT
             </Link>
-            <SignIn/>
-            
-        
-    
+            <SignIn onLogIn ={props.onLogIn} />
         </div>
     </div>
 )

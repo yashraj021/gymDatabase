@@ -6,16 +6,33 @@ import { Switch, Route } from 'react-router-dom';
 
 
 
-function App() {
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+      this.state = {
+        Login: false
+      }
+  }
+
+  onLogIn = () => {
+    this.setState({
+      Login: true
+    })
+  }
   
-    return (
-      <div>
-        <Header/>
-        <Switch>
-          <Route exact path='/' component ={ HomePage }/>
-        </Switch>
-      </div>
-    );
+    render() {      
+      
+      return (
+        <div>
+          <Header onLogIn = {this.onLogIn} OnLogIn ={this.state.LogIn} />
+          <Switch>
+            <Route exact path='/' component ={ HomePage }/>
+          </Switch>
+        </div>
+      );
+    }
   }
 
 

@@ -6,6 +6,7 @@ import SignUp from '../../components/sign-up/sign-up.component';
 
 
 
+
 class HomePage extends React.Component{ 
     constructor(props) {
         super(props);
@@ -13,7 +14,7 @@ class HomePage extends React.Component{
         this.state = {
           name: "",
           email: "",
-          password: ""
+          password: "",
         }
       }
 
@@ -25,7 +26,11 @@ class HomePage extends React.Component{
         })
       }
         
-
+      onSignIn = () => {
+          this.setState({
+              isLogIn: true
+          })
+      }
     
     render() {
     return (
@@ -50,7 +55,7 @@ class HomePage extends React.Component{
             </div>
             <div className = "SignUp">
                 <div className = "joinus">JOIN US</div>         
-                <SignUp className = "forms" onSignUp = { this.onSignUp } />
+                <SignUp style = {{height: '100%'}} className = "forms" onSignUp = { this.onSignUp } />
             </div>
             </div>            
     </div>   
