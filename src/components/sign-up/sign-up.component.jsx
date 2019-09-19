@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomButton from '../custom-button.component/custom-button.component';
 import FormInput from '../form-input/form-input.component';
+import {Form} from 'react-bootstrap';
 
 
 import './sign-up.styles.scss';
@@ -13,7 +14,8 @@ class SignUp extends React.Component {
             displayName: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            Type: ''
         }
     }
     
@@ -25,7 +27,9 @@ class SignUp extends React.Component {
         this.setState({displayName: '',
         email: '',
         password: '',
-        confirmPassword: ''})
+        confirmPassword: '',
+        Type: ''
+    })
 
 
     };
@@ -68,7 +72,7 @@ class SignUp extends React.Component {
                     />
                      
                     
-                    <FormInput
+                    <FormInput 
                         type = 'password'
                         name = 'confirmPassword'
                         value = {confirmPassword}
@@ -76,7 +80,31 @@ class SignUp extends React.Component {
                         label = 'Confirm Password'
                         required
                     />
-                   
+                   <Form.Check
+                        style = {{color: 'white'}}
+                        type="radio"
+                        label="MEMBER"
+                        name="Type"
+                        value = 'MEMBER'
+                        id="formHorizontalRadios1"
+                        onChange = {this.handleChange}
+                        />
+                        <Form.Check
+                        style = {{color: 'white'}}
+                        type="radio"
+                        label="TRAINER"
+                        name="Type"
+                        id="formHorizontalRadios2"
+                        onChange = {this.handleChange}
+                        />
+                        <Form.Check
+                        style = {{color: 'white'}}
+                        type="radio"
+                        label="ADMIN"
+                        name="Type"
+                        id="formHorizontalRadios3"
+                        onChange = {this.handleChange}
+                        />                             
                    
                     <div className = 'buttons'>
                         <CustomButton type = 'submit'> SIGN UP </CustomButton>

@@ -20,7 +20,7 @@ class App extends React.Component {
   onLogIn = (state) => {
     this.setState({
       Login: state
-    }, () => console.log(this.state.Login))
+    })
   }
 
   renderRedirect = () => {

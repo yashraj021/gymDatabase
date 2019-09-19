@@ -15,6 +15,7 @@ class HomePage extends React.Component{
           name: "",
           email: "",
           password: "",
+          Type: ""
         }
       }
 
@@ -22,15 +23,12 @@ class HomePage extends React.Component{
         this.setState({
             name: state.displayName,
             email: state.email,
-            password: state.password
+            password: state.password,
+            Type: state.Type
+
         })
       }
-        
-      onSignIn = () => {
-          this.setState({
-              isLogIn: true
-          })
-      }
+    
     
     render() {
     return (
@@ -39,7 +37,7 @@ class HomePage extends React.Component{
             CROSS CLUB FITNESS
         </div>
         <div className = "quote">
-            STRENGTH WITHIN, PRIDE THROUGHOUT.
+            STRENGTH WITHIN, PRIDE THROUGHOUT
         </div>
         <div className = "Main">
             <div className = "Card">
@@ -54,8 +52,10 @@ class HomePage extends React.Component{
                 
             </div>
             <div className = "SignUp">
-                <div className = "joinus">JOIN US</div>         
-                <SignUp style = {{height: '100%'}} className = "forms" onSignUp = { this.onSignUp } />
+                <div className = "joinus">JOIN US</div>
+                <div className = "signupform">
+                    <SignUp style = {{height: '100%', width : '100%', margin: 'auto'}} className = "forms" onSignUp = { this.onSignUp } />
+                </div>        
             </div>
             </div>            
     </div>   
@@ -65,3 +65,7 @@ class HomePage extends React.Component{
 
 
 export default HomePage;
+
+
+
+  

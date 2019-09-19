@@ -19,7 +19,7 @@ const Header = (props) => {
                 <Link className = 'option' to = '/trainers'>
                     {props.onlogin ? "TRAINERS": ""}
                 </Link>
-                <SignIn onLogIn ={props.onLogIn} />
+                <SignIn className = 'option' style = {{fontSize: "1vw"}} onLogIn ={props.onLogIn} />
             </div>
         </div>
     )
