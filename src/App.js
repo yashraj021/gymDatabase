@@ -14,7 +14,8 @@ class App extends React.Component {
     super(props);
     
       this.state = {
-        Login: false
+        Login: false,
+        users: [],
       }
   }
 

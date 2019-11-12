@@ -15,7 +15,7 @@ class HomePage extends React.Component{
           name: "",
           email: "",
           password: "",
-          Type: ""
+          Type: "",
         }
       }
 
@@ -28,6 +28,7 @@ class HomePage extends React.Component{
 
         })
       }
+      
     
     
     render() {
@@ -43,10 +44,10 @@ class HomePage extends React.Component{
             <div className = "Card">
                 <div className = "Arnold" style = {{backgroundImage: `url(${Arnold})`}}>
                 </div>
-                <div className = "ArnoldQuote">
+                <div className = "TheQuote">
                     "The last three or four reps is what makes the muscle grow. This area of pain divides a champion from someone who is not a champion."
                 </div>
-                <div className = "Author">
+                <div className = "TheAuthor">
                     -Arnold Schwarzenegger; seven-time Mr. Olympia.
                 </div>
                 

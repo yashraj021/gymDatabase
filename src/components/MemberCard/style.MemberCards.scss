@@ -1,0 +1,26 @@
+.MemberCards {
+    display: flex;
+    height: 400px;
+    width: 300px;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 2vw;
+    margin-top: 2vw;
+    box-shadow: 0 8px 6px -6px black;
+    flex-direction: column;
+
+    .UserImage {
+        flex: 3;
+
+    }
+
+    .UserDetails {
+        display: flex;
+        flex: 2;
+        flex-direction: column;
+        justify-content: center;
+        align-content: space-around;
+        align-items: center;
+    
+    }
+}
