@@ -1,0 +1,19 @@
+.MemberList {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+    padding-top: 2vw;
+    overflow: scroll;
+    flex-wrap: wrap;
+
+    .Card {
+        height: 400px;
+        width: 300px;
+        background-color: white;
+        border-radius: 5px;
+        margin-left: 2vw;
+        margin-top: 2vw;
+    }
+
+}

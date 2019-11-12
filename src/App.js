@@ -2,6 +2,7 @@ import React from 'react';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import Header from './components/header.component/header.component';
 import UserData from './pages/user-data.page/user-data.page';
+import Members from './pages/MembersPage/Members'
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component ={ HomePage }/>
             <Route exact path='/home' component ={ UserData }/>
+            <Route exact path='/members' component = { Members }/>
           </Switch>
         </div>
       );
