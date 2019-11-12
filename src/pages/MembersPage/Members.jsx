@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './style.Members.scss';
 import MemberList from '../../components/MemberList/MemberList';
-import users from './users'
+import users from './users';
+import MemberDetailsModal from '../../components/MemberDetailsModal/MemberDetailsModal';
 
 class Members extends Component {
     constructor(props) {
@@ -9,13 +10,18 @@ class Members extends Component {
 
         this.state = {
             users: users,
-            searchfield: ''
+            searchfield: '',
+            modalFlag: false
         }
     }
     
     onChangeHandler = (event) => {
         this.setState({searchfield: event.target.value},()=> console.log(this.state.searchfield))
     }
+
+    onClickHandler = () => {
+        this.setState({modalFlag: true})
+    } 
 
     render() {
         const filteredUsers = this.state.users.filter(user =>{
@@ -36,7 +42,10 @@ class Members extends Component {
                         </button>
                     </div>
                 </div>
-                <MemberList users = {filteredUsers}/>
+                <MemberList users = {filteredUsers} cb = {this.onClickHandler}/>
+                {
+                    this.state.modalFlag? (<MemberDetailsModal/>): null
+                }
             </div>
         )
     }

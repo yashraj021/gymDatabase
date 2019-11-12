@@ -1,0 +1,18 @@
+.ModalView {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(70, 70, 70, 0.103);
+    
+    .ModalSpace {
+        transition: 2s all ease-in-out;
+        height: 70%;
+        width: 60%;
+        background-color: white;
+        position: relative;
+    }
+}

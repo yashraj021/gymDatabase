@@ -1,14 +1,15 @@
 import React from 'react';
 import './style.MemberCards.scss';
 
+
 const MemberCards = (props) => {
 
     return (
-        <div className = 'MemberCards'>
+        <div className = 'MemberCards' onClick = {props.callback}>
             <div className = "UserImage">
             </div>
             <div className = "UserDetails">
-                <div style={{fontFamily: 'Poiret One', fontSize: '1.5vw', paddingBottom: '1%'}} >
+                <div className = 'userName' >
                 {props.name}
                 </div>
                 <div>
