@@ -1,57 +1,46 @@
 import React from 'react';
-import HomePage from './pages/HomePage/HomePage.jsx';
+import HomePage from './pages/Home/HomePage.jsx';
 import Header from './components/header.component/header.component';
-import UserData from './pages/user-data.page/user-data.page';
-import Members from './pages/MembersPage/Members'
-import Trainers from './pages/TrainersPage/Trainers';
+import UserData from './pages/UserData/user-data.page';
+import Members from './pages/Members/Members'
+import Trainers from './pages/Trainers/Trainers';
 import './App.scss';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
-
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 class App extends React.Component {
 
-  constructor(props){
-    super(props);
-    
-      this.state = {
-        Login: false,
+    state = {
+        authenticated: false,
         users: [],
-      }
-  }
+    };
 
-  onLogIn = (state) => {
-    this.setState({
-      Login: state
-    })
-  }
+    setAuthenticated = (authenticated) => {
+        this.setState({authenticated})
+    };
 
-  renderRedirect = () => {
-    if (this.state.Login) {
-      return <Redirect to='/home' />
-    }
-    else{
-      return <Redirect to='/' />
-    }
-  }
+    renderRedirect = () => {
+        if (this.state.authenticated) {
+            return <Redirect to='/home'/>
+        } else {
+            return <Redirect to='/'/>
+        }
+    };
 
-  
-    render() {      
-      
-      return (
-        <div>
-          <Header onLogIn = {this.onLogIn} onlogin ={this.state.Login} />
-          {this.renderRedirect()}
-          <Switch>
-            <Route exact path='/' component ={ HomePage }/>
-            <Route exact path='/home' component ={ UserData }/>
-            <Route exact path='/members' component = { Members }/>
-            <Route exct path='/trainers' component = { Trainers }/>
-          </Switch>
-        </div>
-      );
+    render() {
+        return (
+            <div>
+                <Header setAuthenticated={this.setAuthenticated} authenticated={this.state.authenticated}/>
+                {this.renderRedirect()}
+                <Switch>
+                    <Route exact path='/' component={HomePage}/>
+                    <Route exact path='/home' component={UserData}/>
+                    <Route exact path='/members' component={Members}/>
+                    <Route exct path='/trainers' component={Trainers}/>
+                </Switch>
+            </div>
+        );
     }
-  }
+}
 
 
 export default App;
