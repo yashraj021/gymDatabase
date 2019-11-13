@@ -11,7 +11,8 @@ class Members extends Component {
         this.state = {
             users: users,
             searchfield: '',
-            modalFlag: false
+            modalFlag: false,
+            modalEmail: '',
         }
     }
     
@@ -19,9 +20,15 @@ class Members extends Component {
         this.setState({searchfield: event.target.value},()=> console.log(this.state.searchfield))
     }
 
-    onClickHandler = () => {
-        this.setState({modalFlag: true})
+    onClickHandler = (user) => {
+        this.setState({
+            modalEmail: user,
+            modalFlag: true
+        })
     } 
+    onCloseHandler = () => {
+        this.setState({modalFlag: false})
+    }
 
     render() {
         const filteredUsers = this.state.users.filter(user =>{
@@ -44,7 +51,7 @@ class Members extends Component {
                 </div>
                 <MemberList users = {filteredUsers} cb = {this.onClickHandler}/>
                 {
-                    this.state.modalFlag? (<MemberDetailsModal/>): null
+                    this.state.modalFlag? (<MemberDetailsModal onCloseHandler = {this.onCloseHandler}/>): null
                 }
             </div>
         )

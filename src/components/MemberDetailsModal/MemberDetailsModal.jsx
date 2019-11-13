@@ -6,7 +6,9 @@ const MemberDetailsModal = (props) => {
     return(
         <div className = 'ModalView'>
             <div className = 'ModalSpace'>
-
+            <button onClick = {props.onCloseHandler}>
+                Close
+            </button>
             </div>
         </div>
     )

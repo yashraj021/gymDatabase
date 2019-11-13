@@ -10,7 +10,7 @@ const MemberList = ({users, cb}) => {
             {
                 users.map((user,i)=>{
                     return(
-                        <MemberCards key = {i} email = {user.email} name={user.name} callback ={cb}/>
+                        <MemberCards key = {i} email = {user.email} name={user.name} callback ={(user) => cb(user)} />
                     )
                 })
             }

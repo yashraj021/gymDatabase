@@ -4,16 +4,17 @@ import './style.MemberCards.scss';
 
 const MemberCards = (props) => {
 
+    let {name,email} = props;
     return (
-        <div className = 'MemberCards' onClick = {props.callback}>
+        <div className = 'MemberCards' onClick = {() => props.callback(email)}>
             <div className = "UserImage">
             </div>
             <div className = "UserDetails">
                 <div className = 'userName' >
-                {props.name}
+                {name}
                 </div>
                 <div>
-                {props.email}
+                {email}
                 </div>
             </div>
         </div>
