@@ -5,16 +5,13 @@ import users from './users';
 import MemberDetailsModal from '../../components/MemberDetailsModal/MemberDetailsModal';
 
 class Members extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            users: users,
-            searchfield: '',
-            modalFlag: false,
-            modalEmail: '',
-        }
-    }
+    state = {
+        users: users,
+        searchfield: '',
+        modalFlag: false,
+        modalEmail: '',
+    };
 
     onChangeHandler = (event) => {
         this.setState({searchfield: event.target.value}, () => console.log(this.state.searchfield))
@@ -31,13 +28,11 @@ class Members extends Component {
         this.setState({modalFlag: false})
     };
 
-    filteredUsers =()=> this.state.users.filter(user => {
+    filteredUsers = () => this.state.users.filter(user => {
         return user.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
     });
 
     render() {
-
-
         return (
             <div className='parent'>
                 <div className='header'>

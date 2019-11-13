@@ -1,11 +1,20 @@
+const {
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} = require('mongodb-stitch-browser-sdk');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://boi:c0dezindabad@cluster0-nssjy.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = Stitch.initializeDefaultAppClient('gym-cuvyb');
 
-client.connect(err => {
-    // const collection = client.db("test").collection("devices");
-    console.log("connected", client);
-    // perform actions on the collection object
-    client.close();
+const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('gym');
+
+client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
+    db.collection('gymData').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
+).then(() =>
+    db.collection('gymData').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
+).then(docs => {
+    console.log("Found docs", docs)
+    console.log("[MongoDB Stitch] Connected to Stitch")
+}).catch(err => {
+    console.error(err)
 });
