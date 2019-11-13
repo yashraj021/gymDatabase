@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage/HomePage.jsx';
 import Header from './components/header.component/header.component';
 import UserData from './pages/user-data.page/user-data.page';
 import Members from './pages/MembersPage/Members'
+import Trainers from './pages/TrainersPage/Trainers';
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -45,6 +46,7 @@ class App extends React.Component {
             <Route exact path='/' component ={ HomePage }/>
             <Route exact path='/home' component ={ UserData }/>
             <Route exact path='/members' component = { Members }/>
+            <Route exct path='/trainers' component = { Trainers }/>
           </Switch>
         </div>
       );
