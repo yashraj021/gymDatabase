@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import './style.Trainers.scss';
 import UserList from '../../components/UserList/UserList';
 import MemberDetailsModal from '../../components/TrainerDetailsModal/TrainerDetailsModal';
+import EditingModal from '../../components/EditingModal/EditingModal';
 
 class Trainers extends Component {
+    
     state = {
         users: this.props.users,
         searchfield: '',
         modalFlag: false,
-        modalEmail: '',
+        editingModal: false,
+        editingModalDetail: []
     };
 
     
@@ -17,12 +20,6 @@ class Trainers extends Component {
         this.setState({searchfield: event.target.value}, () => console.log(this.state.searchfield))
     };
 
-    onClickHandler = (user) => {
-        this.setState({
-            modalEmail: user,
-            modalFlag: true
-        })
-    };
 
     onCloseHandler = () => {
         this.setState({modalFlag: false})
@@ -48,10 +45,17 @@ class Trainers extends Component {
                         </div>
                     </div>
                 </div>
-                <UserList users={this.filteredUsers} cb={this.onClickHandler} ondelete = {(id) => this.props.onDelete(id)}/>
+                <UserList users={this.filteredUsers} 
+                    cb={this.onClickHandler} 
+                    ondelete = {(id) => this.props.onDelete(id)}
+                    modalCb = {(user) => this.setState({editingModal: true, editingModalDetail: user},()=> console.log(this.state.editingModalDetail))}
+                />
                 {
-                    this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
+                    this.state.editingModal? <EditingModal onUserUpdate={this.props.onUserUpdate} onCloseHandler = {()=> this.setState({editingModal: false})} type = {"trainer"} userDetails = {this.state.editingModalDetail}/>: null
                 }
+                {/* {
+                    this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
+                } */}
             </div>
         )
     }

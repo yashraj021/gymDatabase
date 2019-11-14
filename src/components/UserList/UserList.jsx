@@ -3,7 +3,7 @@ import './style.UserList.scss';
 import Card from '../Card/Card';
 
 
-const MemberList = ({users, ondelete}) => {
+const MemberList = ({users, ondelete, modalCb}) => {
 
     return(
         <div className = 'MemberList'>
@@ -12,10 +12,9 @@ const MemberList = ({users, ondelete}) => {
                     return(
                         <Card 
                             key = {user.id} 
-                            email = {user.email} 
-                            id = {user.id} 
-                            name={user.name}
-                            onDelete = {(id) => ondelete(id)}    
+                            user = {user}
+                            onDelete = {(id) => ondelete(id)}
+                            modalCb = {(user) => modalCb(user)}    
                         />
                     )
                 })

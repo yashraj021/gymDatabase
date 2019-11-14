@@ -1,0 +1,79 @@
+.ModalView {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(70, 70, 70, 0);
+
+    
+    .ModalSpace {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-content: space-around;
+        align-items: center;
+        background-color: white;
+        animation-name: viewTrans;
+        animation-duration: 0.5s;
+
+        .Details {
+            padding: 5% 5% 5% 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+
+            .fields {
+                display: flex;
+                font-family: 'Poiret One';
+                justify-content: space-around;
+                align-content: space-around;
+                width: 100%;
+                font-size: 1.5vw;
+                color: blue;
+            }
+            .input {
+                width: 80%;
+                border: 0px;
+                color: black;
+                padding-left: 1vw;
+            }
+
+            .picture{
+                flex: 2;
+                height: 30%;
+                width: 30%;
+                border-radius: 100%;
+            }
+
+            .userDetails {
+                flex: 3;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .button {
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+            border-radius: 2px;
+            margin-bottom: 2px;
+            width: 50%;
+        }
+        .button:hover {
+            background-color: rgb(247, 54, 54);
+            border: 1px solid rgb(247, 54, 54);
+        }
+
+    }
+}
+
+@keyframes viewTrans {
+    from {height: 0px; width: 0px;}
+    to {height: 50%;width: 60%;}
+
+}
+

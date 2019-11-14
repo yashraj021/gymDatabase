@@ -6,13 +6,11 @@ export const fetchUserMember = async () => {
     await firestore.collection("member").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             let data = {
-                name: doc.data().name,
-                address: doc.data().address,
-                email: doc.data().email,
-                phoneno: doc.data().phoneno,
+                ...doc.data(),
                 id: doc.id
             }
             user.push(data)
+            console.log(data)
         });
     });
     return user;
@@ -44,7 +42,7 @@ export const deleteUserMember = async (id) => {
 }
 
 export const deleteUserTrainer = async (id) => {
-    await firestore.collection('member').doc(id).delete().then(function() {
+    await firestore.collection('trainer').doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
         console.error("Error removing document: ", error);
@@ -53,7 +51,7 @@ export const deleteUserTrainer = async (id) => {
 
 export const addUser = async (state) => {
     await firestore.collection(state.Type).add({
-        name: state.displayName,
+        name: state.name,
         email: state.email,
         address: state.address,
         phoneno: state.phoneno
@@ -63,6 +61,15 @@ export const addUser = async (state) => {
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
+    });
+}
+
+export const updateUser = async (data) => {
+    await firestore.collection(data.Type).doc(data.id).set({
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        phoneno: data.phoneno
     });
 }
 

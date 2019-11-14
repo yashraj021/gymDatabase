@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './style.Members.scss';
 import UserList from '../../components/UserList/UserList';
 import MemberDetailsModal from '../../components/MemberDetailsModal/MemberDetailsModal';
+import EditingModal from '../../components/EditingModal/EditingModal';
 
 class Members extends Component {
 
@@ -9,7 +10,8 @@ class Members extends Component {
         users: this.props.users,
         searchfield: '',
         modalFlag: false,
-        modalEmail: '',
+        editingModal: false,
+        editingModalDetail: []
     };
 
     
@@ -49,7 +51,14 @@ class Members extends Component {
                         </div>
                     </div>
                 </div>
-                <UserList users={this.filteredUsers} cb={this.onClickHandler} ondelete = {(id) => this.props.onDelete(id)}/>
+                <UserList users={this.filteredUsers} 
+                cb={this.onClickHandler} 
+                ondelete = {(id) => this.props.onDelete(id)}
+                modalCb = {(user) => this.setState({editingModal: true, editingModalDetail: user},()=> console.log(this.state.editingModalDetail))}
+                />
+                {
+                    this.state.editingModal? <EditingModal onUserUpdate={this.props.onUserUpdate} onCloseHandler = {()=> this.setState({editingModal: false})} type = {"member"} userDetails = {this.state.editingModalDetail}/>: null
+                }
                 {
                     this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
                 }

@@ -8,7 +8,7 @@ import './sign-up.styles.scss';
 
 class SignUp extends Component {
     state = {
-        displayName: '',
+        name: '',
         email: '',
         address: '',
         phoneno: '',
@@ -19,7 +19,7 @@ class SignUp extends Component {
         event.preventDefault();
         await addUser(this.state);
         this.setState({
-            displayName: '',
+            name: '',
             email: '',
             address: '',
             phoneno: '',
@@ -33,14 +33,14 @@ class SignUp extends Component {
     };
 
     render() {
-        const {displayName, email, address, phoneno} = this.state;
+        const {name, email, address, phoneno} = this.state;
         return (
             <div className='sign-up'>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <FormInput
                         type='text'
-                        name='displayName'
-                        value={displayName}
+                        name='name'
+                        value={name}
                         onChange={this.handleChange}
                         label='Display Name'
                         required
