@@ -5,18 +5,20 @@ import Members from './pages/Members/Members'
 import Trainers from './pages/Trainers/Trainers';
 import './App.scss';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import {fetchUserMember, deleteUserMember} from './API/firebase.dml';
+import {fetchUserMember, deleteUserMember, fetchUserTrainer, deleteUserTrainer} from './API/firebase.dml';
 
 class App extends React.Component {
 
     state = {
         authenticated: false,
-        users: [],
+        members: [],
+        trainers: [],
         new: 0
     };
 
     updateUser = async () => {
-        await fetchUserMember().then(user=> this.setState({users: user}));
+        await fetchUserMember().then(user=> this.setState({members: user}));
+        await fetchUserTrainer().then(user=> this.setState({trainers: user}))
     }
     
     componentDidMount() {
@@ -39,7 +41,12 @@ class App extends React.Component {
         await deleteUserMember(id);
         await this.updateUser();
 
-    } 
+    }
+    
+    trainerDelete = async (id) => {
+        await deleteUserTrainer(id);
+        await this.updateUser();
+    }
 
     render() {
         return (
@@ -48,9 +55,9 @@ class App extends React.Component {
                 {this.renderRedirect()}
                 <Switch>
                     <Route exact path='/' component={(props) => <HomePage onUserUpdate = {this.updateUser}/> }/>
-                    <Route exact path='/home' component={(props) => <Members {...props} users = {this.state.users} onDelete = {this.memberDelete}  />} />
-                    <Route exact path='/members' component={Members}/>
-                    <Route exct path='/trainers' component={Trainers}/>
+                    <Route exact path='/home' component={(props) => <Members {...props} users = {this.state.members} onDelete = {this.memberDelete}  />} />
+                    <Route exact path='/members' component={(props) => <Members {...props} users = {this.state.members} onDelete = {this.memberDelete}  />} />
+                    <Route exct path='/trainers' component={(props) => <Trainers {...props} users = {this.state.trainers} onDelete = {this.trainerDelete}  />}/>
                 </Switch>
             </div>
         );

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './style.Members.scss';
-import MemberList from '../../components/MemberList/MemberList';
+import UserList from '../../components/UserList/UserList';
 import MemberDetailsModal from '../../components/MemberDetailsModal/MemberDetailsModal';
 
 class Members extends Component {
@@ -49,7 +49,7 @@ class Members extends Component {
                         </div>
                     </div>
                 </div>
-                <MemberList users={this.filteredUsers} cb={this.onClickHandler} ondelete = {(id) => this.props.onDelete(id)}/>
+                <UserList users={this.filteredUsers} cb={this.onClickHandler} ondelete = {(id) => this.props.onDelete(id)}/>
                 {
                     this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
                 }

@@ -1,12 +1,12 @@
 import React from 'react';
-import './style.TrainerCards.scss';
+import './style.Card.scss';
 
 
-const TrainerCards = (props) => {
+const Card = (props) => {
 
-    let {name,email} = props;
+    let {name, email, id} = props;
     return (
-        <div className = 'MemberCards' onClick = {() => props.callback(email)}>
+        <div className = 'MemberCards'>
             <div className = "UserImage">
             </div>
             <div className = "UserDetails">
@@ -17,8 +17,11 @@ const TrainerCards = (props) => {
                 {email}
                 </div>
             </div>
+            <button onClick = {() => props.onDelete(id)}>
+                Delete
+            </button>
         </div>
     )
 }
 
-export default TrainerCards;
+export default Card;

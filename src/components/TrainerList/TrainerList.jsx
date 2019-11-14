@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.TrainerList.scss';
-import TrainerCards from '../TrainerCard/TrainerCards';
+import Card from '../Card/Card';
 ;
 
 const TrainerList = ({users, cb}) => {
@@ -10,7 +10,7 @@ const TrainerList = ({users, cb}) => {
             {
                 users.map((user,i)=>{
                     return(
-                        <TrainerCards key = {i} email = {user.email} name={user.name} callback ={(user) => cb(user)} />
+                        <Card key = {i} email = {user.email} name={user.name} callback ={(user) => cb(user)} />
                     )
                 })
             }
