@@ -1,32 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import CustomButton from '../custom-button.component/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import {Form} from 'react-bootstrap';
-
+import {addUser} from '../../API/firebase.dml';
 
 import './sign-up.styles.scss';
 
-class SignUp extends React.Component {
+class SignUp extends Component {
     state = {
         displayName: '',
         email: '',
-        password: '',
-        confirmPassword: '',
+        address: '',
+        phoneno: '',
         Type: ''
     };
 
     handleSubmit = async event => {
         event.preventDefault();
-        //ONsIGNuP IS FROM HOMEPAGE TO UPDATE THE STATE, YOU CAN EITHER JOIN YOUR BACKEND HERE(RECOMMENDED) OR AT THE HOMEPAGE FOR SIGN UP
-        this.props.onSignUp(this.state);
-
+        await addUser(this.state);
         this.setState({
             displayName: '',
             email: '',
-            password: '',
-            confirmPassword: '',
-            Type: ''
+            address: '',
+            phoneno: '',
         })
+        this.props.onUserUpdate();
     };
 
     handleChange = event => {
@@ -35,7 +33,7 @@ class SignUp extends React.Component {
     };
 
     render() {
-        const {displayName, email, password, confirmPassword} = this.state;
+        const {displayName, email, address, phoneno} = this.state;
         return (
             <div className='sign-up'>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
@@ -56,27 +54,27 @@ class SignUp extends React.Component {
                         required
                     />
                     <FormInput
-                        type='password'
-                        name='password'
-                        value={password}
+                        type='text'
+                        name='address'
+                        value={address}
                         onChange={this.handleChange}
-                        label='Password'
+                        label='Address'
                         required
                     />
                     <FormInput
-                        type='password'
-                        name='confirmPassword'
-                        value={confirmPassword}
+                        type='text'
+                        name='phoneno'
+                        value={phoneno}
                         onChange={this.handleChange}
-                        label='Confirm Password'
+                        label='Phone No'
                         required
                     />
-                    <Form.Check
+                     <Form.Check
                         style={{color: 'white'}}
                         type="radio"
                         label="MEMBER"
                         name="Type"
-                        value='MEMBER'
+                        value='member'
                         id="formHorizontalRadios1"
                         onChange={this.handleChange}
                     />
@@ -85,19 +83,12 @@ class SignUp extends React.Component {
                         type="radio"
                         label="TRAINER"
                         name="Type"
+                        value='trainer'
                         id="formHorizontalRadios2"
                         onChange={this.handleChange}
                     />
-                    <Form.Check
-                        style={{color: 'white'}}
-                        type="radio"
-                        label="ADMIN"
-                        name="Type"
-                        id="formHorizontalRadios3"
-                        onChange={this.handleChange}
-                    />
                     <div className='buttons'>
-                        <CustomButton type='submit'> SIGN UP </CustomButton>
+                        <CustomButton type='submit'> JOIN </CustomButton>
                     </div>
                 </form>
             </div>
@@ -107,3 +98,5 @@ class SignUp extends React.Component {
 }
 
 export default SignUp;
+
+

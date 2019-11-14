@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './HomePage.scss';
 import Arnold from '../../assets/Arnold.jpg';
 import SignUp from '../../components/sign-up/sign-up.component';
 
-class HomePage extends React.Component {
+class HomePage extends Component {
 
     state = {
         name: "",
@@ -48,7 +48,7 @@ class HomePage extends React.Component {
                         <div className="joinus">JOIN US</div>
                         <div className="signupform">
                             <SignUp style={{height: '100%', width: '100%', margin: 'auto'}} className="forms"
-                                    onSignUp={this.onSignUp}/>
+                                    onSignUp={this.onSignUp} onUserUpdate = {this.props.onUserUpdate} />
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,12 @@ import React from 'react';
 import './style.MemberCards.scss';
 
 
+
 const MemberCards = (props) => {
 
-    let {name,email} = props;
+    let {name, email, id} = props;
     return (
-        <div className = 'MemberCards' onClick = {() => props.callback(email)}>
+        <div className = 'MemberCards'>
             <div className = "UserImage">
             </div>
             <div className = "UserDetails">
@@ -17,6 +18,9 @@ const MemberCards = (props) => {
                 {email}
                 </div>
             </div>
+            <button onClick = {() => props.onDelete(id)}>
+                Delete
+            </button>
         </div>
     )
 }

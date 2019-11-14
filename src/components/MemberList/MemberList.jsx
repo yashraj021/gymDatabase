@@ -3,14 +3,20 @@ import './style.MemberList.scss';
 import MemberCards from '../MemberCard/MemberCards';
 
 
-const MemberList = ({users, cb}) => {
+const MemberList = ({users, cb, ondelete}) => {
 
     return(
         <div className = 'MemberList'>
             {
                 users().map((user,i)=>{
                     return(
-                        <MemberCards key = {i} email = {user.email} name={user.name} callback ={(user) => cb(user)} />
+                        <MemberCards 
+                        key = {user.id} 
+                        email = {user.email} 
+                        id = {user.id} 
+                        name={user.name}
+                        onDelete = {(id) => ondelete(id)}    
+                        />
                     )
                 })
             }

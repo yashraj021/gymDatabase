@@ -7,7 +7,7 @@ const Header = (props) => {
     return (
         <div className='header'>
             <div className='options'>
-                <Link className='option' to='/home'>
+                <Link className='option' to='/members'>
                     {props.authenticated ? "HOME" : ""}
                 </Link>
                 <Link className='option' to='/members'>

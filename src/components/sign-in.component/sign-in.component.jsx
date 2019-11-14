@@ -1,28 +1,33 @@
 import React from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 
 class SignIn extends React.Component {
 
-    state = {
+   constructor(props) {
+       super(props);
+
+       this.state = {
         show: false,
         email: "",
         password: "",
         login: false
     };
+   }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(this.state)
-        this.setState({
-            show: false,
-            email: "",
-            password: "",
-            login: true
-        }, () => {
-            this.props.setAuthenticated(this.state.login);
-        })
-    };
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     console.log(this.state)
+    //     this.setState({
+    //         show: false,
+    //         email: "",
+    //         password: "",
+    //         login: true
+    //     }, () => {
+    //         this.props.setAuthenticated(this.state.login);
+    //     })
+    // };
 
     handleChange = event => {
         const {type, value} = event.target;
@@ -30,21 +35,23 @@ class SignIn extends React.Component {
     };
 
     onclick = async () => {
-        if (this.state.login === false) {
-            this.setState({show: true});
-        } else {
-            this.setState({
-                login: false
-            }, () => {
-                this.props.setAuthenticated(this.state.login);
-            })
 
-        }
+        await signInWithGoogle().then( (res) => {
+            this.setState({
+                email: res.user.email,
+                login: true
+            })
+            this.props.setAuthenticated(this.state.login);
+        })   
     };
 
     onhandle = () => {
         this.setState({show: false});
     };
+    logOut = () => {
+        this.setState({login: false}, () => this.props.setAuthenticated(this.state.login))
+        
+    }
 
     render() {
         return (
@@ -55,10 +62,10 @@ class SignIn extends React.Component {
                     fontWeight: "bold",
                     marginLeft: "10px",
                     textDecoration: 'none'
-                }} onClick={this.onclick}>
+                }} onClick={!this.state.login ? this.onclick: this.logOut}>
                     {this.state.login ? "LOG OUT" : "LOG IN"}
                 </Button>
-                <div>
+                {/* <div>
                     <Modal centered show={this.state.show} onHide={this.onhandle}>
                         <Modal.Header closeButton>
                             <Modal.Title>Sign In</Modal.Title>
@@ -86,7 +93,7 @@ class SignIn extends React.Component {
                             </Form>
                         </Modal.Body>
                     </Modal>
-                </div>
+                </div> */}
             </div>
         )
     }

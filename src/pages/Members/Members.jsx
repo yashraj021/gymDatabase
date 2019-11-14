@@ -1,17 +1,18 @@
 import React, {Component} from 'react'
 import './style.Members.scss';
 import MemberList from '../../components/MemberList/MemberList';
-import users from './users';
 import MemberDetailsModal from '../../components/MemberDetailsModal/MemberDetailsModal';
 
 class Members extends Component {
 
     state = {
-        users: users,
+        users: this.props.users,
         searchfield: '',
         modalFlag: false,
         modalEmail: '',
     };
+
+    
 
     onChangeHandler = (event) => {
         this.setState({searchfield: event.target.value}, () => console.log(this.state.searchfield))
@@ -31,8 +32,11 @@ class Members extends Component {
     filteredUsers = () => this.state.users.filter(user => {
         return user.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
     });
+    
+    
 
     render() {
+        
         return (
             <div className='parent'>
                 <div className='header'>
@@ -43,14 +47,11 @@ class Members extends Component {
                         <div>
                             <input className='SearchBox' placeholder='Search' onChange={this.onChangeHandler}/>
                         </div>
-                        <button className='button'>
-                            Search
-                        </button>
                     </div>
                 </div>
-                <MemberList users={this.filteredUsers} cb={this.onClickHandler}/>
+                <MemberList users={this.filteredUsers} cb={this.onClickHandler} ondelete = {(id) => this.props.onDelete(id)}/>
                 {
-                    this.state.modalFlag ? (<MemberDetailsModal onCloseHandler={this.onCloseHandler}/>) : null
+                    this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
                 }
             </div>
         )

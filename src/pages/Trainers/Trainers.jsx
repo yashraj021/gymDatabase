@@ -1,21 +1,31 @@
 import React, { Component } from 'react'
 import './style.Trainers.scss';
 import MemberList from '../../components/TrainerList/TrainerList';
-import users from './users';
 import MemberDetailsModal from '../../components/TrainerDetailsModal/TrainerDetailsModal';
+import {firestore} from '../../firebase/firebase.utils';
 
 class Trainers extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            users: users,
+            users: [],
             searchfield: '',
             modalFlag: false,
             modalEmail: '',
         }
     }
-    
+    async componentDidMount() {
+        let user = [];
+        await firestore.collection("trainer").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                user.push(doc.data());
+            });
+        });
+        this.setState({users:user})
+
+    }
+
     onChangeHandler = (event) => {
         this.setState({searchfield: event.target.value},()=> console.log(this.state.searchfield))
     }
