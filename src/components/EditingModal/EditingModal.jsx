@@ -4,10 +4,10 @@ import {updateUser} from '../../API/firebase.dml';
 
 class EditingModal extends Component {
     state = {
-        name: '',
-        address: '',
-        email: '',
-        phoneno: '',
+        name: this.props.userDetails.name,
+        address: this.props.userDetails.address,
+        email: this.props.userDetails.email,
+        phoneno: this.props.userDetails.phoneno,
         id: this.props.userDetails.id,
         Type: this.props.type
     }
