@@ -10,7 +10,6 @@ export const fetchUserMember = async () => {
                 id: doc.id
             }
             user.push(data)
-            console.log(data)
         });
     });
     return user;
@@ -65,11 +64,27 @@ export const addUser = async (state) => {
 }
 
 export const updateUser = async (data) => {
-    await firestore.collection(data.Type).doc(data.id).set({
-        name: data.name,
-        email: data.email,
-        address: data.address,
-        phoneno: data.phoneno
-    });
+    let Type = data.Type;
+    if(Type === 'member') {
+        await firestore.collection(Type).doc(data.id).set({
+            name: data.name,
+            email: data.email,
+            address: data.address,
+            phoneno: data.phoneno,
+            selectedTrainer: data.selectedTrainer
+            
+        });
+    }
+    else {
+        await firestore.collection(Type).doc(data.id).set({
+            name: data.name,
+            email: data.email,
+            address: data.address,
+            phoneno: data.phoneno,
+            
+            
+        });
+    }
+    
 }
 

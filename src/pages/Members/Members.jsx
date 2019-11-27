@@ -11,7 +11,8 @@ class Members extends Component {
         searchfield: '',
         modalFlag: false,
         editingModal: false,
-        editingModalDetail: []
+        editingModalDetail: [],
+        trainers: this.props.trainers,
     };
 
     
@@ -20,12 +21,6 @@ class Members extends Component {
         this.setState({searchfield: event.target.value}, () => console.log(this.state.searchfield))
     };
 
-    onClickHandler = (user) => {
-        this.setState({
-            modalEmail: user,
-            modalFlag: true
-        })
-    };
 
     onCloseHandler = () => {
         this.setState({modalFlag: false})
@@ -57,11 +52,11 @@ class Members extends Component {
                 modalCb = {(user) => this.setState({editingModal: true, editingModalDetail: user},()=> console.log(this.state.editingModalDetail))}
                 />
                 {
-                    this.state.editingModal? <EditingModal onUserUpdate={this.props.onUserUpdate} onCloseHandler = {()=> this.setState({editingModal: false})} type = {"member"} userDetails = {this.state.editingModalDetail}/>: null
+                    this.state.editingModal? <EditingModal trainers = {this.state.trainers} onUserUpdate={this.props.onUserUpdate} onCloseHandler = {()=> this.setState({editingModal: false})} type = {"member"} userDetails = {this.state.editingModalDetail}/>: null
                 }
-                {
+                {/* {
                     this.state.modalFlag ? (<MemberDetailsModal  onCloseHandler={this.onCloseHandler}/>) : null
-                }
+                } */}
             </div>
         )
     }

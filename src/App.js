@@ -58,8 +58,8 @@ class App extends React.Component {
                 {this.renderRedirect()}
                 <Switch>
                     <Route exact path='/' component={(props) => <HomePage onUserUpdate = {this.updateUser}/> }/>
-                    <Route exact path='/home' component={(props) => <Members {...props} users = {this.state.members} onDelete = {this.memberDelete} onUserUpdate={this.updateUser} />} />
-                    <Route exact path='/members' component={(props) => <Members {...props} users = {this.state.members} onDelete = {this.memberDelete} onUserUpdate={this.updateUser} />} />
+                    <Route exact path='/home' component={(props) => <Members {...props} users = {this.state.members} trainers={this.state.trainers} onDelete = {this.memberDelete} onUserUpdate={this.updateUser} />} />
+                    <Route exact path='/members' component={(props) => <Members {...props} users = {this.state.members} trainers={this.state.trainers} onDelete = {this.memberDelete} onUserUpdate={this.updateUser} />} />
                     <Route exct path='/trainers' component={(props) => <Trainers {...props} users = {this.state.trainers} onDelete = {this.trainerDelete} onUserUpdate={this.updateUser} />}/>
                 </Switch>
             </div>
