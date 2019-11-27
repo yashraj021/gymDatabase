@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './style.EditingModal.scss';
 import {updateUser} from '../../API/firebase.dml';
 import {Dropdown} from 'react-bootstrap';
+import {storageRef} from '../../firebase/firebase.utils';
+import DetailField from './DetailField';
 
 class EditingModal extends Component {
     state = {
@@ -12,7 +14,9 @@ class EditingModal extends Component {
         id: this.props.userDetails.id,
         Type: this.props.type,
         trainers: this.props.trainers,
-        selectedTrainer: null
+        selectedTrainer: null,
+        file: '',
+        imagePreviewUrl: ''
     }
 
     onCloseHandler = (event) => {
@@ -44,6 +48,27 @@ class EditingModal extends Component {
         },() => this.props.onCloseHandler())
     }
     
+    imageChangeHandler(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+        this.setState({
+            file: file,
+            imagePreviewUrl: reader.result
+        })
+        }
+
+        reader.readAsDataURL(file)
+            
+        
+    }
+
+    imageSubmitHandler = () => {
+        storageRef.child('DisplayPicture/' + `${this.state.id}`).put(this.state.file,{ contentType: 'image/jpeg' })
+    }
     
     
     render() {
@@ -52,26 +77,12 @@ class EditingModal extends Component {
                 <div className = 'ModalSpace'>
                     <div className = 'Details'>
                         <div className = "picture">
-    
+                            <input type = 'file' onChange ={(e) => this.imageChangeHandler(e)} onSubmit={(e)=>this._handleSubmit(e)}/>
+                                <button className = 'button' onClick = {this.imageSubmitHandler}>
+                                    Upload
+                                </button>
                         </div>
-                        <div className = 'userDetails'>
-                            <div className = "fields">
-                                {'Name: '}
-                                <input name = "name" className = "input" placeholder = {this.props.userDetails.name} onChange = {this.onCloseHandler}/>
-                            </div>
-                            <div className = "fields">
-                                {'Address: '}
-                                <input name = "address" className = "input" placeholder = {this.props.userDetails.address} onChange = {this.onCloseHandler}/>
-                            </div>
-                            <div  className = "fields">
-                                {'E-mail: '}
-                                <input name = 'email'className = "input" placeholder = {this.props.userDetails.email} onChange = {this.onCloseHandler}/>
-                            </div>
-                            <div  className = "fields" style = {{paddingBottom: 100}}>
-                                {'Phone-No: '}
-                                <input name = 'phoneno' className = "input" placeholder = {this.props.userDetails.phoneno} onChange = {this.onCloseHandler}/>
-                            </div>
-                        </div>
+                        <DetailField userDetails = {this.props.userDetails} onCloseHandler = {this.onCloseHandler}/>
                         <div className = 'fields'>
                         {"Assign Trainer:"} 
                         <Dropdown style = {{width: '80%'}}>
