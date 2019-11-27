@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './style.EditingModal.scss';
 import {updateUser} from '../../API/firebase.dml';
-import {Dropdown} from 'react-bootstrap';
+
 import {storageRef, storage} from '../../firebase/firebase.utils';
 import DetailField from './DetailField';
 import ProfilePicture from './ProfilePicture';
@@ -82,22 +82,13 @@ class EditingModal extends Component {
             <div className = 'ModalView'>
                 <div className = 'ModalSpace'>
                     <div className = 'Details'>
-                        <ProfilePicture imageChangeHandler = {(e) => this.imageChangeHandler(e)} imageSubmitHandler = {this.imageSubmitHandler}/>
-                        <DetailField userDetails = {this.props.userDetails} onCloseHandler = {this.onCloseHandler}/>
-                        <div className = 'fields'>
-                        {"Assign Trainer:"} 
-                        <Dropdown style = {{width: '80%'}}>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Select Trainer
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                {
-                                    this.state.trainers.map(x=> <Dropdown.Item key = {x.id} onClick = {() => this.setState({selectedTrainer: x.name})}>{x.name}</Dropdown.Item>
-                                    )
-                                }
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        </div>
+                        <ProfilePicture imageURL = {this.state.imageURL} imageChangeHandler = {(e) => this.imageChangeHandler(e)} imageSubmitHandler = {this.imageSubmitHandler}/>
+                        <DetailField 
+                            userDetails = {this.props.userDetails} 
+                            onCloseHandler = {this.onCloseHandler} 
+                            trainers = {this.state.trainers} 
+                            onTrainerSelectHandler = { (x) => this.setState({selectedTrainer: x.id}) }
+                        />     
                     </div>
                     <button className = 'button' onClick = {this.onSubmitHandler}>
                         Update

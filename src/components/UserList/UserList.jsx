@@ -14,7 +14,8 @@ const MemberList = ({users, ondelete, modalCb}) => {
                             key = {user.id} 
                             user = {user}
                             onDelete = {(id) => ondelete(id)}
-                            modalCb = {(user) => modalCb(user)}    
+                            modalCb = {(user) => modalCb(user)}
+                            imageURL = {users.imageURL}    
                         />
                     )
                 })

@@ -47,9 +47,9 @@ class Members extends Component {
                     </div>
                 </div>
                 <UserList users={this.filteredUsers} 
-                cb={this.onClickHandler} 
-                ondelete = {(id) => this.props.onDelete(id)}
-                modalCb = {(user) => this.setState({editingModal: true, editingModalDetail: user},()=> console.log(this.state.editingModalDetail))}
+                    cb={this.onClickHandler} 
+                    ondelete = {(id) => this.props.onDelete(id)}
+                    modalCb = {(user) => this.setState({editingModal: true, editingModalDetail: user},()=> console.log(this.state.editingModalDetail))}
                 />
                 {
                     this.state.editingModal? <EditingModal trainers = {this.state.trainers} onUserUpdate={this.props.onUserUpdate} onCloseHandler = {()=> this.setState({editingModal: false})} type = {"member"} userDetails = {this.state.editingModalDetail}/>: null

@@ -10,6 +10,7 @@ class Card extends Component {
         email: this.props.user.email,
         name: this.props.user.name,
         modalPopState: false,
+        imageURL: this.props.user.imageURL
     }
     
     modalHandler = () => {
@@ -19,8 +20,14 @@ class Card extends Component {
 
     render() {
         return (
+        
             <div className = 'MemberCards'>
                 <div className = "UserImage">
+                        <div className = "profilePicture">
+                    {
+                        this.state.imageURL != null? <img className = "displayPic" src={this.state.imageURL} alt="boohoo"/> : null
+                    }
+                    </div>
                 </div>
                 <div className = "UserDetails">
                     <div className = 'userName' >
