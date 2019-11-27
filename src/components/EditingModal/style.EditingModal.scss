@@ -1,5 +1,6 @@
 .ModalView {
     display: flex;
+    
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -17,6 +18,7 @@
         animation-duration: 0.5s;
 
         .Details {
+            
             padding: 5% 5% 5% 5%;
             display: flex;
             flex-direction: column;
@@ -42,13 +44,48 @@
             }
 
             .picture{
-                flex: 2;
-                height: 30%;
-                width: 30%;
-                border-radius: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                align-content: space-around;
+                align-items: center;
+                
+                
+                .profilePicture {
+                    flex-wrap: wrap;
+                    
+                    height: 200px;
+                    width: 200px;
+                    
+                    
+                    
+                }
+                .upload {
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 200px;
+                    width: 300px;
+                    justify-content: flex-end;
+                    align-items: center;
+                    align-content: space-around;
+                    flex-direction: column;
+                    
+                   
+                    
+                    .fileChoose {
+                        margin-left: 20%;
+                        margin-bottom: 20%;
+                        
+                        flex-direction: column;
+                        
+                    }
+                }
             }
 
             .userDetails {
+                margin-top: 5%;
                 flex: 3;
                 height: 100%;
                 width: 100%;
@@ -58,10 +95,10 @@
         .button {
             background-color: black;
             color: white;
-            border: 1px solid black;
-            border-radius: 2px;
+            border: 2px solid black;
+            border-radius: 4px;
             margin-bottom: 2px;
-            width: 50%;
+            width: 40%;
         }
         .button:hover {
             background-color: rgb(247, 54, 54);

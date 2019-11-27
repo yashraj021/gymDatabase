@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './style.EditingModal.scss';
 import {updateUser} from '../../API/firebase.dml';
 import {Dropdown} from 'react-bootstrap';
-import {storageRef} from '../../firebase/firebase.utils';
+import {storageRef, storage} from '../../firebase/firebase.utils';
 import DetailField from './DetailField';
+import ProfilePicture from './ProfilePicture';
 
 class EditingModal extends Component {
     state = {
@@ -16,7 +17,8 @@ class EditingModal extends Component {
         trainers: this.props.trainers,
         selectedTrainer: null,
         file: '',
-        imagePreviewUrl: ''
+        imagePreviewUrl: '',
+        imageURL: this.props.userDetails.imageURL,
     }
 
     onCloseHandler = (event) => {
@@ -32,7 +34,8 @@ class EditingModal extends Component {
             phoneno: this.state.phoneno,
             id: this.state.id,
             selectedTrainer: this.state.selectedTrainer,
-            Type: this.state.Type
+            Type: this.state.Type,
+            imageURL: this.state.imageURL
         }
         console.log(state)
         await updateUser(state);
@@ -44,7 +47,8 @@ class EditingModal extends Component {
             phoneno: '',
             id: '',
             selectedTrainer: null,
-            Type: this.props.type
+            Type: this.props.type,
+            imageURL: ''
         },() => this.props.onCloseHandler())
     }
     
@@ -55,10 +59,10 @@ class EditingModal extends Component {
         let file = e.target.files[0];
 
         reader.onloadend = () => {
-        this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
-        })
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            })
         }
 
         reader.readAsDataURL(file)
@@ -66,8 +70,10 @@ class EditingModal extends Component {
         
     }
 
-    imageSubmitHandler = () => {
-        storageRef.child('DisplayPicture/' + `${this.state.id}`).put(this.state.file,{ contentType: 'image/jpeg' })
+    imageSubmitHandler = async () => {
+       await storageRef.child('DisplayPicture/' + `${this.state.id}`).put(this.state.file,{ contentType: 'image/jpeg' });
+       await storage.ref('DisplayPicture/' + `${this.state.id}`).getDownloadURL().then( url => this.setState({imageURL: url}));
+       
     }
     
     
@@ -76,12 +82,7 @@ class EditingModal extends Component {
             <div className = 'ModalView'>
                 <div className = 'ModalSpace'>
                     <div className = 'Details'>
-                        <div className = "picture">
-                            <input type = 'file' onChange ={(e) => this.imageChangeHandler(e)} onSubmit={(e)=>this._handleSubmit(e)}/>
-                                <button className = 'button' onClick = {this.imageSubmitHandler}>
-                                    Upload
-                                </button>
-                        </div>
+                        <ProfilePicture imageChangeHandler = {(e) => this.imageChangeHandler(e)} imageSubmitHandler = {this.imageSubmitHandler}/>
                         <DetailField userDetails = {this.props.userDetails} onCloseHandler = {this.onCloseHandler}/>
                         <div className = 'fields'>
                         {"Assign Trainer:"} 
@@ -89,14 +90,13 @@ class EditingModal extends Component {
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 Select Trainer
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                                 {
                                     this.state.trainers.map(x=> <Dropdown.Item key = {x.id} onClick = {() => this.setState({selectedTrainer: x.name})}>{x.name}</Dropdown.Item>
                                     )
                                 }
                             </Dropdown.Menu>
-                            </Dropdown>
+                        </Dropdown>
                         </div>
                     </div>
                     <button className = 'button' onClick = {this.onSubmitHandler}>

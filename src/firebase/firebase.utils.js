@@ -8,7 +8,6 @@ const config = {
         authDomain: "gymdatabase-56e9b.firebaseapp.com",
         databaseURL: "https://gymdatabase-56e9b.firebaseio.com",
         projectId: "gymdatabase-56e9b",
-        storageBucket: "gymdatabase-56e9b.appspot.com",
         messagingSenderId: "1066662787459",
         appId: "1:1066662787459:web:3d08bdf0994e1811829eb6",
         measurementId: "G-Z1E0TLZCL1",
@@ -51,6 +50,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 export const storageRef = firebase.storage().ref();
 
 

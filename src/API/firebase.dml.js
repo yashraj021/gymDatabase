@@ -53,7 +53,7 @@ export const addUser = async (state) => {
         name: state.name,
         email: state.email,
         address: state.address,
-        phoneno: state.phoneno
+        phoneno: state.phoneno,
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -71,7 +71,8 @@ export const updateUser = async (data) => {
             email: data.email,
             address: data.address,
             phoneno: data.phoneno,
-            selectedTrainer: data.selectedTrainer
+            selectedTrainer: data.selectedTrainer,
+            imageURL: data.imageURL
             
         });
     }
@@ -81,6 +82,7 @@ export const updateUser = async (data) => {
             email: data.email,
             address: data.address,
             phoneno: data.phoneno,
+            imageURL: data.imageURL
             
             
         });
