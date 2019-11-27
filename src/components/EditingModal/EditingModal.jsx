@@ -88,6 +88,7 @@ class EditingModal extends Component {
                             onCloseHandler = {this.onCloseHandler} 
                             trainers = {this.state.trainers} 
                             onTrainerSelectHandler = { (x) => this.setState({selectedTrainer: x.id}) }
+                            Type = {this.props.type}
                         />     
                     </div>
                     <button className = 'button' onClick = {this.onSubmitHandler}>

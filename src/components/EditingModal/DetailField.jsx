@@ -2,7 +2,7 @@ import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 
 
-const Details = ({userDetails, onCloseHandler, onTrainerSelectHandler, trainers}) => {
+const Details = ({userDetails, onCloseHandler, onTrainerSelectHandler, trainers, Type}) => {
     return (
         <div className = 'userDetails'>
             <div className = "fields">
@@ -21,20 +21,24 @@ const Details = ({userDetails, onCloseHandler, onTrainerSelectHandler, trainers}
                 {'Phone-No: '}
                 <input name = 'phoneno' className = "input" placeholder = {userDetails.phoneno} onChange = {onCloseHandler}/>
             </div>
-            <div  className = "fields">
-            {"Assign Trainer:"} 
-                <Dropdown style = {{width: '80%'}}>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Select Trainer
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        {
-                            trainers.map(x=> <Dropdown.Item key = {x.id} onClick = {() => onTrainerSelectHandler(x)}>{x.name}</Dropdown.Item>
-                            )
-                        }
-                    </Dropdown.Menu>
-                </Dropdown>
-            </div>
+           {
+                Type != 'trainer'? ( 
+                    <div  className = "fields">
+                        {"Assign Trainer:"} 
+                        <Dropdown style = {{width: '80%'}}>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                Select Trainer
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {
+                                    trainers.map(x=> <Dropdown.Item key = {x.id} onClick = {() => onTrainerSelectHandler(x)}>{x.name}</Dropdown.Item>
+                                    )
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                ): null
+           }
         </div>
     )
 }

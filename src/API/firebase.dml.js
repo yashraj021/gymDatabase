@@ -20,10 +20,7 @@ export const fetchUserTrainer = async () => {
     await firestore.collection("trainer").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             let data = {
-                name: doc.data().name,
-                address: doc.data().address,
-                email: doc.data().email,
-                phoneno: doc.data().phoneno,
+                ...doc.data(),
                 id: doc.id
             }
             user.push(data)
