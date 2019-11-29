@@ -3,6 +3,7 @@ import './style.Trainers.scss';
 import UserList from '../../components/UserList/UserList';
 import MemberDetailsModal from '../../components/TrainerDetailsModal/TrainerDetailsModal';
 import EditingModal from '../../components/EditingModal/EditingModal';
+import PageSubHeader from '../../components/PageSubHeader/PageSubHeader';
 
 class Trainers extends Component {
     
@@ -35,16 +36,7 @@ class Trainers extends Component {
         
         return (
             <div className='parent'>
-                <div className='header'>
-                    <div className='Topic'>
-                        Members
-                    </div>
-                    <div className='SearchArea'>
-                        <div>
-                            <input className='SearchBox' placeholder='Search' onChange={this.onChangeHandler}/>
-                        </div>
-                    </div>
-                </div>
+                <PageSubHeader onChangeHandler = {this.onChangeHandler} Type = {'Trainers'}/>
                 <UserList users={this.filteredUsers} 
                     cb={this.onClickHandler} 
                     ondelete = {(id) => this.props.onDelete(id)}

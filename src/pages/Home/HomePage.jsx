@@ -33,8 +33,7 @@ class HomePage extends Component {
                 </div>
                 <div className="Main">
                     <div className="Card">
-                        <div className="Arnold" style={{backgroundImage: `url(${Arnold})`}}>
-                        </div>
+                        <div className="Arnold" style={{backgroundImage: `url(${Arnold})`}}></div>
                         <div className="TheQuote">
                             "The last three or four reps is what makes the muscle grow. This area of pain divides a
                             champion from someone who is not a champion."
@@ -42,13 +41,14 @@ class HomePage extends Component {
                         <div className="TheAuthor">
                             -Arnold Schwarzenegger; seven-time Mr. Olympia.
                         </div>
-
                     </div>
                     <div className="SignUp">
                         <div className="joinus">JOIN US</div>
                         <div className="signupform">
-                            <SignUp style={{height: '100%', width: '100%', margin: 'auto'}} className="forms"
-                                    onSignUp={this.onSignUp} onUserUpdate = {this.props.onUserUpdate} />
+                            <SignUp 
+                                style={{height: '100%', width: '100%', margin: 'auto'}} className="forms"
+                                onSignUp={this.onSignUp} onUserUpdate = {this.props.onUserUpdate} 
+                            />
                         </div>
                     </div>
                 </div>
